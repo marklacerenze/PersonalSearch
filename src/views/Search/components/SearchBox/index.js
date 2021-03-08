@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './style.css'
 
-const SearchBox = ({onSearch, onClose}) => {
+const SearchBox = ({onSearch, onClose, isSearching}) => {
     const [searchText, setSearchText] = useState("");
     
     // Clean screen
@@ -21,8 +21,8 @@ const SearchBox = ({onSearch, onClose}) => {
                         onChange= {({target: {value}}) => 
                         setSearchText(value)} />
                     </label>
-                    <button onClick= {() => onSearch(searchText)}>Buscar</button> {/* Me manda lo que el usuario busca   */}
-                    <button onClick= {handleSearchClick}>Cerrar</button>
+                    <button onClick= {() => onSearch(searchText)} disabled={!searchText.length}>Buscar</button> {/* Me manda lo que el usuario busca   */}
+                    {isSearching && <button onClick= {handleSearchClick} disabled={!searchText.length}>Cerrar</button>}
             </div>
         </div>
     );
